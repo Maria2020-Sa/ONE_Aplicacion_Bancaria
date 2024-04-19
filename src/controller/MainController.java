@@ -1,11 +1,18 @@
 package controller;
 
-import serviceImpl.ApplicationServiceImpl;
+import service.AplicationService;
+import service.serviceImpl.ApplicationServiceImpl;
 
 public class MainController {
 
+    private static AplicationService aplicationService;
+
+    public MainController(){
+        aplicationService = new ApplicationServiceImpl();
+    }
+
     public static void main(String[] args) {
-        ApplicationServiceImpl applicationService = new ApplicationServiceImpl();
-        applicationService.ejecutarMenuOpciones();
+        new MainController();
+        aplicationService.ejecutarMenuOpciones();
     }
 }

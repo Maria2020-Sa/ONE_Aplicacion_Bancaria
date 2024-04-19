@@ -1,22 +1,23 @@
-package serviceImpl;
+package service.serviceImpl;
 
 import dto.ApplicationDTO;
+import service.AplicationService;
+import util.Tipo;
 
 import java.util.Scanner;
 
-public class ApplicationServiceImpl {
+public class ApplicationServiceImpl implements AplicationService {
 
+    private Scanner scanner;
+    private ApplicationDTO applicationDTO;
     private double saldoDisponible = 100000.00;
     private int numeroOpcionMenu;
-    private String tipoCuenta = "Corriente";
-    private String tipoMoneda = "Pesos";
-    private Scanner scanner = new Scanner(System.in);
     private String mensajeInicial;
     private String menuMensaje;
-    private ApplicationDTO applicationDTO = new ApplicationDTO();
-
 
     public ApplicationServiceImpl(){
+        this.scanner = new Scanner(System.in);
+        this.applicationDTO = new ApplicationDTO();
         System.out.println("Ingrese su Nombre y Apellido: ");
         applicationDTO.setNombreCliente(scanner.nextLine());
         this.mensajeInicial= """
@@ -26,7 +27,7 @@ public class ApplicationServiceImpl {
                     Tipo de moneda: %s
                     Saldo disponible: $ %.2f
                     *******************************************
-                    """.formatted(applicationDTO.getNombreCliente(), tipoCuenta, tipoMoneda, saldoDisponible);
+                    """.formatted(applicationDTO.getNombreCliente(), Tipo.CUENTA_CORRIENTE.valor, Tipo.TIPO_MONEDA.valor, saldoDisponible);
         System.out.println(mensajeInicial);
     }
 
